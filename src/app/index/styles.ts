@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
       backgroundColor: "transparent",  
       width: "85%",
       padding: 15,
-      borderRadius: 10,
+      borderRadius: 25,
       alignItems: "center",
       marginTop: 20,
       borderWidth: 2,  
