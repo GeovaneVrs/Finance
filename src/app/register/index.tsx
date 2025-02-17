@@ -1,3 +1,4 @@
+// Register.js
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ImageBackground, Alert } from "react-native";
 import { styles } from "./styles";
@@ -9,6 +10,10 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const generateCode = () => {
+    return Math.floor(1000 + Math.random() * 9000).toString();
+  };
+
   const handleRegister = () => {
     if (!name.trim()) {
       return Alert.alert("Erro", "Por favor, insira seu nome.");
@@ -19,11 +24,10 @@ export default function Register() {
     if (!password.trim()) {
       return Alert.alert("Erro", "Por favor, insira sua senha.");
     }
-  
-    Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
-    router.navigate("/verification");
+    
+    const verificationCode = generateCode();
+    router.push({ pathname: "/verification", params: { email, verificationCode } });
   };
-  
 
   return (
     <ImageBackground source={require("@/assets/background.jpg")} style={styles.background}>

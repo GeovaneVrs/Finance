@@ -1,25 +1,49 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { View, Text, TextInput, TouchableOpacity, ImageBackground, Alert } from "react-native";
 import { styles } from "./styles";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 
 export default function Verification() {
+    const { email, verificationCode } = useLocalSearchParams();
     const [code, setCode] = useState(["", "", "", ""]);
+    const [timer, setTimer] = useState(120);
+    const inputRefs = useRef(new Array(4).fill(null));
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const handleChange = (text: string, index: number) => {
         if (text.length > 1) return;
         const newCode = [...code];
         newCode[index] = text;
         setCode(newCode);
-    };
 
+        if (text && index < 3) {
+            inputRefs.current[index + 1]?.focus();
+        }
+        if (!text && index > 0) {
+            inputRefs.current[index - 1]?.focus();
+        }
+        if (index === 3 && text) {
+            inputRefs.current[index]?.blur();
+        }
+    };
 
     const handleVerify = () => {
         if (code.some((digit) => digit === "")) {
-            return alert("Preencha todos os campos do código!");
+            return Alert.alert("Erro", "Preencha todos os campos do código!");
         }
-        alert("Código validado!");
+        if (code.join("") === verificationCode) {
+            Alert.alert("Sucesso", "Código validado com sucesso!");
+        } else {
+            Alert.alert("Erro", "Código incorreto!");
+        }
     };
 
     return (
@@ -30,12 +54,13 @@ export default function Verification() {
                 </TouchableOpacity>
 
                 <Text style={styles.title}>Verificação de segurança</Text>
-                <Text style={styles.subtitle}>Enviamos um código de segurança para o e-mail:{"\n"}<Text style={styles.email}>geovanevalerio1807@gmail.com</Text></Text>
+                <Text style={styles.subtitle}>Enviamos um código de segurança para o e-mail: {"\n"}<Text style={styles.email}>{email}</Text></Text>
 
                 <View style={styles.codeContainer}>
                     {code.map((digit, index) => (
                         <TextInput
                             key={index}
+                            ref={(el) => (inputRefs.current[index] = el)}
                             style={styles.codeInput}
                             keyboardType="numeric"
                             maxLength={1}
@@ -50,10 +75,9 @@ export default function Verification() {
                         <Text style={styles.buttonText}>Validar código</Text>
                     </TouchableOpacity>
                     <Text style={styles.timerText}>
-                        Não recebeu? Aguarde <Text style={styles.timer}>01:36</Text>
+                        Não recebeu? Aguarde <Text style={styles.timer}>{Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, "0")}</Text>
                     </Text>
                 </View>
-
             </View>
         </ImageBackground>
     );
