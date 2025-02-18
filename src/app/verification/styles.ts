@@ -79,6 +79,8 @@ export const styles = StyleSheet.create({
       color: "#FFF",
       fontWeight: "bold",
     },
+    activeTimer: {
+      color: "#6500FF",
+      fontWeight: "bold",
+    },
   });
-  
-  

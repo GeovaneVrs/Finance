@@ -8,7 +8,7 @@ export default function Verification() {
     const { email, verificationCode } = useLocalSearchParams();
     const [code, setCode] = useState(["", "", "", ""]);
     const [timer, setTimer] = useState(120);
-    const inputRefs = useRef(new Array(4).fill(null));
+    const inputRefs = useRef<(TextInput | null)[]>(new Array(4).fill(null));
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -54,7 +54,7 @@ export default function Verification() {
                 </TouchableOpacity>
 
                 <Text style={styles.title}>Verificação de segurança</Text>
-                <Text style={styles.subtitle}>Enviamos um código de segurança para o e-mail: {"\n"}<Text style={styles.email}>{email}</Text></Text>
+                <Text style={styles.subtitle}>Enviamos um código de segurança para o e-mail e notificação: {"\n"}<Text style={styles.email}>{email}</Text></Text>
 
                 <View style={styles.codeContainer}>
                     {code.map((digit, index) => (

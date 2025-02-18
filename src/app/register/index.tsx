@@ -1,20 +1,74 @@
-// Register.js
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ImageBackground, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, ImageBackground, Alert, Platform } from "react-native";
 import { styles } from "./styles";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Platform.OS === 'web') {
+    Alert.alert('Notifications are not supported on web');
+    return null;
+  }
+
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      Alert.alert('Failed to get push token for push notification!');
+      return null;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+  } else {
+    Alert.alert('Must use physical device for Push Notifications');
+  }
+
+  return token;
+}
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [expoPushToken, setExpoPushToken] = useState('');
+
+  React.useEffect(() => {
+    registerForPushNotificationsAsync().then(token => {
+      if (token) setExpoPushToken(token);
+    });
+  }, []);
 
   const generateCode = () => {
     return Math.floor(1000 + Math.random() * 9000).toString();
   };
 
-  const handleRegister = () => {
+  const sendVerificationNotification = async (code: string) => {
+    if (Platform.OS === 'web') {
+      return;
+    }
+
+    try {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "Código de Verificação",
+          body: `Seu código de verificação é: ${code}`,
+          data: { code },
+        },
+        trigger: null,
+      });
+    } catch (error) {
+      console.error('Error sending notification:', error);
+    }
+  };
+
+  const handleRegister = async () => {
     if (!name.trim()) {
       return Alert.alert("Erro", "Por favor, insira seu nome.");
     }
@@ -26,7 +80,16 @@ export default function Register() {
     }
     
     const verificationCode = generateCode();
-    router.push({ pathname: "/verification", params: { email, verificationCode } });
+    
+    await sendVerificationNotification(verificationCode);
+    
+    router.push({ 
+      pathname: "/verification", 
+      params: { 
+        email, 
+        verificationCode 
+      } 
+    });
   };
 
   return (
@@ -53,6 +116,7 @@ export default function Register() {
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
+          autoCapitalize="none"
         />
 
         <TextInput
