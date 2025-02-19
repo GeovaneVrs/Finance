@@ -1,11 +1,13 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Svg, Path } from 'react-native-svg';
-import { styles } from './styles';
+import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Svg, Path } from "react-native-svg";
+import { styles } from "./styles";
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "expo-router";
 
 const Index = () => {
   const { toast } = useToast();
+  const router = useRouter();
 
   const handleLogin = () => {
     toast({
@@ -15,10 +17,7 @@ const Index = () => {
   };
 
   const handleSignUp = () => {
-    toast({
-      title: "Coming soon!",
-      description: "Sign up functionality will be available soon.",
-    });
+    router.push("/Boarding"); 
   };
 
   const handleForgotPassword = () => {
@@ -31,7 +30,6 @@ const Index = () => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
-     
         <View style={styles.logoContainer}>
           <Svg width="119" height="125" viewBox="0 0 119 125" fill="none">
             <Path
@@ -44,22 +42,16 @@ const Index = () => {
           </Svg>
         </View>
 
-       
         <Text style={styles.title}>finWise</Text>
-
-
         <Text style={styles.description}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
         </Text>
 
-
         <View style={styles.buttonContainer}>
-
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.loginButtonText}>Log In</Text>
           </TouchableOpacity>
 
-  
           <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
             <Text style={styles.signUpButtonText}>Sign Up</Text>
           </TouchableOpacity>
