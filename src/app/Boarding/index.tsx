@@ -6,17 +6,32 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   interpolate,
+  withSpring,
 } from 'react-native-reanimated';
 import { styles } from './styles';
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
 const OnboardingScreen = () => {
+  const router = useRouter();
   const translateX = useSharedValue(0);
+  const currentPage = useSharedValue(0);
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
     translateX.value = event.contentOffset.x;
+    currentPage.value = Math.round(event.contentOffset.x / width);
   });
+
+  const handleNext = () => {
+    if (currentPage.value === 0) {
+      // Animate to second screen
+      translateX.value = withSpring(width, { damping: 20 });
+    } else {
+      // Navigate to main app
+      router.replace('/register');
+    }
+  };
 
   const FirstScreen = () => {
     const animatedStyle = useAnimatedStyle(() => {
@@ -25,7 +40,15 @@ const OnboardingScreen = () => {
         [0, width],
         [1, 0]
       );
-      return { opacity };
+      const scale = interpolate(
+        translateX.value,
+        [0, width],
+        [1, 0.8]
+      );
+      return { 
+        opacity,
+        transform: [{ scale }]
+      };
     });
 
     return (
@@ -54,7 +77,15 @@ const OnboardingScreen = () => {
         [0, width],
         [0, 1]
       );
-      return { opacity };
+      const scale = interpolate(
+        translateX.value,
+        [0, width],
+        [0.8, 1]
+      );
+      return { 
+        opacity,
+        transform: [{ scale }]
+      };
     });
 
     return (
@@ -70,29 +101,13 @@ const OnboardingScreen = () => {
           </View>
           <View style={styles.circle} />
           <Image source={require('@/assets/moedas.png')} style={styles.image} />
-          <Text style={styles.title}>¿Are you ready to take control of?</Text>
+          <Text style={styles.title}>Are you ready to take control?</Text>
+
+          <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
         </View>
       </Animated.View>
-    );
-  };
-
-  const Pagination = () => {
-    const animatedDotStyle = useAnimatedStyle(() => {
-      const translateDot = interpolate(
-        translateX.value,
-        [0, width],
-        [0, 29]
-      );
-      return {
-        transform: [{ translateX: translateDot }],
-      };
-    });
-
-    return (
-      <View style={styles.pagination}>
-        <Animated.View style={[styles.activeDot, animatedDotStyle]} />
-        <View style={styles.inactiveDot} />
-      </View>
     );
   };
 
@@ -108,14 +123,8 @@ const OnboardingScreen = () => {
         <FirstScreen />
         <SecondScreen />
       </Animated.ScrollView>
-      
-      <TouchableOpacity style={styles.nextButton}>
-        <Text style={styles.nextButtonText}>Next</Text>
-      </TouchableOpacity>
-      
-      <Pagination />
     </View>
   );
 };
-
+ 
 export default OnboardingScreen;
