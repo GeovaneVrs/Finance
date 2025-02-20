@@ -10,14 +10,11 @@ const Index = () => {
   const router = useRouter();
 
   const handleLogin = () => {
-    toast({
-      title: "Coming soon!",
-      description: "Login functionality will be available soon.",
-    });
+    router.push("/login"); 
   };
 
   const handleSignUp = () => {
-    router.push("/Boarding"); 
+    router.push("/register"); 
   };
 
   const handleForgotPassword = () => {
