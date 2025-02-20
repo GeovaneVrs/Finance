@@ -62,13 +62,6 @@ export default function LoginScreen() {
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
-        {/* Fingerprint Section */}
-        <View style={styles.fingerprintSection}>
-          <Text style={styles.fingerprintText}>
-            Use <Text style={styles.fingerprintBlue}>fingerprint</Text> to access
-          </Text>
-        </View>
-
         {/* Divider */}
         <View style={styles.dividerContainer}>
           <Text style={styles.dividerText}>or sign up with</Text>
