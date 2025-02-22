@@ -17,13 +17,6 @@ const Index = () => {
     router.push("/register"); 
   };
 
-  const handleForgotPassword = () => {
-    toast({
-      title: "Coming soon!",
-      description: "Password recovery will be available soon.",
-    });
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -53,9 +46,6 @@ const Index = () => {
             <Text style={styles.signUpButtonText}>Sign Up</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleForgotPassword}>
-            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </View>
