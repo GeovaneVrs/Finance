@@ -3,9 +3,12 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, StatusBa
 import { useFonts } from 'expo-font';
 import { Svg, Path } from 'react-native-svg';
 import { styles } from './styles';
+import { router } from 'expo-router';
 
 export default function LoginScreen() {
-
+  const handlePassword = () => {
+    router.push("/Password"); 
+  };
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -48,7 +51,7 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlePassword}>
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 
