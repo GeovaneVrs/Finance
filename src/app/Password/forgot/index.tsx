@@ -2,8 +2,13 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Template from '@/components/template';
 import { styles } from './styles';
+import { router } from 'expo-router';
 
 export default function ForgotPassword() {
+   const handleSecurity = () => {
+      router.push("/Password/Security");
+    };
+
   return (
     <Template title="Forgot Password">
         <Text style={styles.resetTitle}>reset password?</Text>
@@ -18,7 +23,7 @@ export default function ForgotPassword() {
           placeholderTextColor="rgba(9, 48, 48, 0.4)"
         />
 
-        <TouchableOpacity style={styles.nextButton}>
+        <TouchableOpacity style={styles.nextButton} onPress={handleSecurity}>
           <Text style={styles.nextButtonText}>Next step</Text>
         </TouchableOpacity>
 

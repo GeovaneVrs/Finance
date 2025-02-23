@@ -7,7 +7,7 @@ import Template from '@/components/template';
 
 export default function LoginScreen() {
   const handlePassword = () => {
-    router.push("/Password");
+    router.push("/Password/forgot");
   };
 
   return (
