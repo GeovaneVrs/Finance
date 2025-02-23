@@ -1,36 +1,29 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, StatusBar } from 'react-native';
-import { useFonts } from 'expo-font';
+import { View, Text, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 import { styles } from './styles';
 import { router } from 'expo-router';
+import Template from '@/components/template';
 
 export default function LoginScreen() {
   const handlePassword = () => {
-    router.push("/Password"); 
+    router.push("/Password");
   };
-  return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      
-      {/* Green Background with Welcome Text */}
-      <View style={styles.greenBackground}>
-        <Text style={styles.welcomeText}>Welcome</Text>
-      </View>
-      
-      {/* White Card */}
-      <View style={styles.whiteCard}>
-        {/* Input Fields */}
-        <Text style={styles.inputLabel}>Username or email</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="example@example.com"
-            placeholderTextColor="rgba(14, 62, 62, 0.45)"
-          />
-        </View>
 
-        <Text style={styles.inputLabel}>Password</Text>
+  return (
+    <Template>
+      <StatusBar barStyle="light-content" />
+
+      <Text style={styles.inputLabel}>Username or email</Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="example@example.com"
+          placeholderTextColor="rgba(14, 62, 62, 0.45)"
+        />
+      </View>
+
+      <Text style={styles.inputLabel}>Password</Text>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -55,22 +48,18 @@ export default function LoginScreen() {
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        {/* Login Button */}
         <TouchableOpacity style={styles.loginButton}>
           <Text style={styles.loginButtonText}>Log In</Text>
         </TouchableOpacity>
 
-        {/* Sign Up Button */}
         <TouchableOpacity style={styles.signUpButton}>
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
-        {/* Divider */}
         <View style={styles.dividerContainer}>
           <Text style={styles.dividerText}>or sign up with</Text>
         </View>
 
-        {/* Social Buttons */}
         <View style={styles.socialButtons}>
           <TouchableOpacity style={styles.socialButton}>
             <Svg width="35" height="35" viewBox="0 0 35 35" fill="none">
@@ -96,12 +85,11 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Bottom Text */}
+
         <Text style={styles.bottomText}>
           Don't have an account? <Text style={styles.bottomTextLink}>Sign Up</Text>
         </Text>
-      </View>
-    </View>
+
+    </Template>
   );
 }
-
