@@ -4,15 +4,16 @@ import { styles } from './styles';
 
 interface TemplateProps {
   children?: React.ReactNode;
+  title?: string;
 }
 
-export default function Template({ children }: TemplateProps) {
+export default function Template({ children, title = "Welcome" }: TemplateProps) {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       
       <View style={styles.greenBackground}>
-        <Text style={styles.welcomeText}>Welcome</Text>
+        <Text style={styles.welcomeText}>{title}</Text>
       </View>
       
       <View style={styles.whiteCard}>

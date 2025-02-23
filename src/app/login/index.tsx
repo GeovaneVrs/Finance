@@ -11,7 +11,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <Template>
+    <Template title="Welcome">
       <StatusBar barStyle="light-content" />
 
       <Text style={styles.inputLabel}>Username or email</Text>

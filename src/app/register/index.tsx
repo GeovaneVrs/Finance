@@ -24,7 +24,7 @@ export default function SignUpScreen() {
 
   return (
 
-    <Template>
+    <Template title="Create Account">
       <StatusBar barStyle="light-content" />
       {[
         { name: 'fullName', label: 'Full Name', placeholder: 'John Doe' },
