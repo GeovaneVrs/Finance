@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Template from '@/components/template';
 import { styles } from './styles';
+import { router } from 'expo-router';
 
 export default function Security() {
     const [pin, setPin] = useState(['', '', '', '', '', '']);
@@ -27,8 +28,9 @@ export default function Security() {
   
     const handleSubmit = () => {
       Keyboard.dismiss();
+      router.push("/Password/newpassword");
     };
-  
+
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <Template title="Security pin">
