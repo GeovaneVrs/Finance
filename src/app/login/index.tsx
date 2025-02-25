@@ -10,6 +10,10 @@ export default function LoginScreen() {
     router.push("/Password/forgot");
   };
 
+  const handleHome = () => {
+    router.push("/init");
+  };
+
   return (
     <Template title="Welcome">
       <StatusBar barStyle="light-content" />
@@ -48,7 +52,7 @@ export default function LoginScreen() {
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleHome}>
           <Text style={styles.loginButtonText}>Log In</Text>
         </TouchableOpacity>
 
