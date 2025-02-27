@@ -11,7 +11,7 @@ export default function LoginScreen() {
   };
 
   const handleHome = () => {
-    router.push("/init");
+    router.push("/home");
   };
 
   return (
