@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Circle, Path, Rect } from 'react-native-svg';
 import BottomNavbar from '@/components/bar';
+import { MaterialIcons } from "@expo/vector-icons"
 
 export default function FinanceDashboard() {
   return (
@@ -14,8 +15,24 @@ export default function FinanceDashboard() {
           <View style={styles.welcomeContainer}>
             <Text style={styles.welcomeTitle}>Hi, Welcome Back</Text>
             <Text style={styles.welcomeSubtitle}>Good Morning</Text>
+
+            <View style={styles.notificação}>
+              <Svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <Circle cx="15" cy="15" r="15" fill="#DFF7E2" />
+                
+                <Path
+                  d="M15 6C12.2386 6 10 8.23858 10 11V16L8.5 17.5V18H21.5V17.5L20 16V11C20 8.23858 17.7614 6 15 6Z"
+                  fill="#093030"
+                />
+                <Path
+                  d="M12 19C12 20.1046 12.8954 21 14 21H16C17.1046 21 18 20.1046 18 19H12Z"
+                  fill="#093030"
+                />
+              </Svg>
+            </View>
           </View>
-          
+
+
           <View style={styles.balanceContainer}>
             {/* Total Balance */}
             <View style={styles.balanceSection}>
@@ -226,4 +243,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#00d09e',
     borderRadius: 31,
   },
+  notificação: {
+    position: "absolute",
+    right: -60, 
+    top: 6, 
+  }
 });
