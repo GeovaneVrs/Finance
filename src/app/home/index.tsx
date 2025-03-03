@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 import BottomNavbar from '@/components/bar';
 import { MaterialIcons } from "@expo/vector-icons"
+import { styles } from './styles';
 
 export default function FinanceDashboard() {
   return (
@@ -19,7 +20,7 @@ export default function FinanceDashboard() {
             <View style={styles.notificação}>
               <Svg width="30" height="30" viewBox="0 0 30 30" fill="none">
                 <Circle cx="15" cy="15" r="15" fill="#DFF7E2" />
-                
+
                 <Path
                   d="M15 6C12.2386 6 10 8.23858 10 11V16L8.5 17.5V18H21.5V17.5L20 16V11C20 8.23858 17.7614 6 15 6Z"
                   fill="#093030"
@@ -39,7 +40,7 @@ export default function FinanceDashboard() {
               <View style={styles.labelContainer}>
                 <View style={styles.icon}>
                   <Svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <Path d="M7.5 1C7.5 0.723857 7.27614 0.5 7 0.5L2.5 0.5C2.22386 0.5 2 0.723858 2 1C2 1.27614 2.22386 1.5 2.5 1.5L6.5 1.5L6.5 5.5C6.5 5.77614 6.72386 6 7 6C7.27614 6 7.5 5.77614 7.5 5.5L7.5 1ZM1.35355 7.35355L7.35355 1.35355L6.64645 0.646447L0.646447 6.64645L1.35355 7.35355Z" fill="#052224"/>
+                    <Path d="M7.5 1C7.5 0.723857 7.27614 0.5 7 0.5L2.5 0.5C2.22386 0.5 2 0.723858 2 1C2 1.27614 2.22386 1.5 2.5 1.5L6.5 1.5L6.5 5.5C6.5 5.77614 6.72386 6 7 6C7.27614 6 7.5 5.77614 7.5 5.5L7.5 1ZM1.35355 7.35355L7.35355 1.35355L6.64645 0.646447L0.646447 6.64645L1.35355 7.35355Z" fill="#052224" />
                   </Svg>
                 </View>
                 <Text style={styles.totalBalanceLabel}>Total Balance</Text>
@@ -54,7 +55,7 @@ export default function FinanceDashboard() {
               <View style={styles.labelContainer}>
                 <View style={styles.icon}>
                   <Svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <Path d="M7 7.5C7.27614 7.5 7.5 7.27614 7.5 7L7.5 2.5C7.5 2.22386 7.27614 2 7 2C6.72386 2 6.5 2.22386 6.5 2.5L6.5 6.5L2.5 6.5C2.22386 6.5 2 6.72386 2 7C2 7.27614 2.22386 7.5 2.5 7.5L7 7.5ZM0.646447 1.35355L6.64645 7.35355L7.35355 6.64645L1.35355 0.646447L0.646447 1.35355Z" fill="#052224"/>
+                    <Path d="M7 7.5C7.27614 7.5 7.5 7.27614 7.5 7L7.5 2.5C7.5 2.22386 7.27614 2 7 2C6.72386 2 6.5 2.22386 6.5 2.5L6.5 6.5L2.5 6.5C2.22386 6.5 2 6.72386 2 7C2 7.27614 2.22386 7.5 2.5 7.5L7 7.5ZM0.646447 1.35355L6.64645 7.35355L7.35355 6.64645L1.35355 0.646447L0.646447 1.35355Z" fill="#052224" />
                   </Svg>
                 </View>
                 <Text style={styles.totalExpenseLabel}>Total Expense</Text>
@@ -80,7 +81,28 @@ export default function FinanceDashboard() {
       {/* Fundo Branco com borda arredondada */}
       <View style={styles.whiteContainer}>
         {/* Retângulo Verde dentro do Branco */}
-        <View style={styles.innerGreenBox} />
+        <View style={styles.innerGreenBox}>
+          <View style={styles.circle}>
+            <TouchableOpacity style={styles.circleicon}>
+              <MaterialIcons name="card-travel" size={40} color="#052224" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.divider2} />
+          <View style={styles.divider3} />
+
+          <TouchableOpacity style={styles.salary}>
+            <MaterialIcons name="attach-money" size={32} color="#052224" />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.food}>
+            <MaterialIcons name="fastfood" size={32} color="#052224" />
+          </TouchableOpacity>
+
+          <Text style={styles.amountsalaryText}>$4.000.00</Text>
+          <Text style={styles.amountfoodText}>-$100.00</Text>
+
+        </View>
       </View>
 
       {/* Bottom Navbar fixa na parte inferior */}
@@ -89,163 +111,3 @@ export default function FinanceDashboard() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#00d09e',
-  },
-  greenBackground: {
-    width: '100%',
-    height: '40%',
-    backgroundColor: '#00d09e',
-    position: 'absolute',
-    top: 0,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: 60, 
-  },
-  financeInfo: {
-    alignItems: 'flex-start', 
-    width: '100%',
-    paddingHorizontal: 30, 
-  },
-  welcomeContainer: {
-    width: 278,
-    height: 35,
-    marginBottom: 25, 
-    alignItems: 'flex-start',
-  },
-  welcomeTitle: {
-    color: '#052224',
-    fontSize: 20,
-    fontFamily: 'Poppins-SemiBold',
-    textTransform: 'capitalize',
-    lineHeight: 24,
-  },
-  welcomeSubtitle: {
-    color: '#052224',
-    fontSize: 14,
-    fontFamily: 'League Spartan',
-    width: 169,
-  },
-  balanceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 7, 
-    alignSelf: 'center', 
-    marginTop: 15, 
-  },
-  balanceSection: {
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  labelContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  totalBalanceLabel: {
-    color: '#093030',
-    fontSize: 12,
-    fontFamily: 'Poppins-Regular',
-    textTransform: 'capitalize',
-    marginLeft: 5,
-  },
-  totalBalanceValue: {
-    color: '#F1FFF3',
-    fontSize: 24,
-    fontFamily: 'Poppins-Bold',
-    textTransform: 'capitalize',
-    marginBottom: 5,
-  },
-  divider: {
-    width: 1, 
-    height: 40, 
-    backgroundColor: '#DFF7E2',
-    marginHorizontal: 15,
-  },
-  totalExpenseLabel: {
-    color: '#093030',
-    fontSize: 12,
-    fontFamily: 'Poppins-Regular',
-    textTransform: 'capitalize',
-    marginLeft: 5, 
-  },
-  totalExpenseValue: {
-    color: '#0068FF',
-    fontSize: 22,
-    fontFamily: 'Poppins-SemiBold',
-    textTransform: 'capitalize',
-  },
-  icon: {
-    width: 12,
-    height: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bottomBoxContainer: {
-    width: 330,
-    height: 27,
-    marginTop: 15, 
-    alignSelf: 'center', 
-  },
-  blackBackground: {
-    position: 'absolute',
-    width: '100%',
-    height: 27,
-    backgroundColor: '#052224',
-    borderRadius: 13.5,
-    justifyContent: 'center',
-    paddingLeft: 15,
-  },
-  whiteOverlay: {
-    position: 'absolute',
-    width: '80%',
-    height: 27,
-    backgroundColor: '#f1fff3',
-    borderRadius: 13.5,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'flex-end', 
-    paddingRight: 15, 
-  },
-  percentageText: {
-    color: '#f1fff3',
-    fontSize: 13,
-    fontFamily: 'Poppins-Medium',
-    textTransform: 'capitalize',
-  },
-  amountText: {
-    color: '#052224',
-    fontSize: 13,
-    fontFamily: 'Poppins-Medium',
-    textTransform: 'capitalize',
-    fontStyle: 'italic', 
-  },
-  whiteContainer: {
-    width: '100%',
-    height: '70%',
-    backgroundColor: '#F1FFF3',
-    position: 'absolute',
-    bottom: 0,
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: 40,
-  },
-  innerGreenBox: {
-    width: 317,
-    height: 132,
-    backgroundColor: '#00d09e',
-    borderRadius: 31,
-  },
-  notificação: {
-    position: "absolute",
-    right: -60, 
-    top: 6, 
-  }
-});
