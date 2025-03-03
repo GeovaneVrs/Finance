@@ -10,6 +10,12 @@ export default function FinanceDashboard() {
       <View style={styles.greenBackground}>
         {/* Informações Financeiras */}
         <View style={styles.financeInfo}>
+          {/* Welcome Message */}
+          <View style={styles.welcomeContainer}>
+            <Text style={styles.welcomeTitle}>Hi, Welcome Back</Text>
+            <Text style={styles.welcomeSubtitle}>Good Morning</Text>
+          </View>
+          
           <View style={styles.balanceContainer}>
             {/* Total Balance */}
             <View style={styles.balanceSection}>
@@ -82,15 +88,39 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 60, 
   },
   financeInfo: {
-    alignItems: 'center',
+    alignItems: 'flex-start', 
+    width: '100%',
+    paddingHorizontal: 30, 
+  },
+  welcomeContainer: {
+    width: 278,
+    height: 35,
+    marginBottom: 25, 
+    alignItems: 'flex-start',
+  },
+  welcomeTitle: {
+    color: '#052224',
+    fontSize: 20,
+    fontFamily: 'Poppins-SemiBold',
+    textTransform: 'capitalize',
+    lineHeight: 24,
+  },
+  welcomeSubtitle: {
+    color: '#052224',
+    fontSize: 14,
+    fontFamily: 'League Spartan',
+    width: 169,
   },
   balanceContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10, 
+    marginBottom: 7, 
+    alignSelf: 'center', 
+    marginTop: 15, 
   },
   balanceSection: {
     alignItems: 'center',
@@ -142,8 +172,8 @@ const styles = StyleSheet.create({
   bottomBoxContainer: {
     width: 330,
     height: 27,
-    marginTop: 10,
-    position: 'relative',
+    marginTop: 15, 
+    alignSelf: 'center', 
   },
   blackBackground: {
     position: 'absolute',
