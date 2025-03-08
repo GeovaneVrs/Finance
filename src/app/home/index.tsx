@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Svg, { Circle, Path, Rect } from 'react-native-svg';
-import BottomNavbar from '@/components/bar';
-import { MaterialIcons } from "@expo/vector-icons"
-import { styles } from './styles';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import Svg, { Circle, Path, Rect } from "react-native-svg";
+import BottomNavbar from "@/components/bar";
+import { MaterialIcons } from "@expo/vector-icons";
+import { styles } from "./styles";
 
 export default function FinanceDashboard() {
   return (
@@ -33,14 +33,16 @@ export default function FinanceDashboard() {
             </View>
           </View>
 
-
           <View style={styles.balanceContainer}>
             {/* Total Balance */}
             <View style={styles.balanceSection}>
               <View style={styles.labelContainer}>
                 <View style={styles.icon}>
                   <Svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <Path d="M7.5 1C7.5 0.723857 7.27614 0.5 7 0.5L2.5 0.5C2.22386 0.5 2 0.723858 2 1C2 1.27614 2.22386 1.5 2.5 1.5L6.5 1.5L6.5 5.5C6.5 5.77614 6.72386 6 7 6C7.27614 6 7.5 5.77614 7.5 5.5L7.5 1ZM1.35355 7.35355L7.35355 1.35355L6.64645 0.646447L0.646447 6.64645L1.35355 7.35355Z" fill="#052224" />
+                    <Path
+                      d="M7.5 1C7.5 0.723857 7.27614 0.5 7 0.5L2.5 0.5C2.22386 0.5 2 0.723858 2 1C2 1.27614 2.22386 1.5 2.5 1.5L6.5 1.5L6.5 5.5C6.5 5.77614 6.72386 6 7 6C7.27614 6 7.5 5.77614 7.5 5.5L7.5 1ZM1.35355 7.35355L7.35355 1.35355L6.64645 0.646447L0.646447 6.64645L1.35355 7.35355Z"
+                      fill="#052224"
+                    />
                   </Svg>
                 </View>
                 <Text style={styles.totalBalanceLabel}>Total Balance</Text>
@@ -55,7 +57,10 @@ export default function FinanceDashboard() {
               <View style={styles.labelContainer}>
                 <View style={styles.icon}>
                   <Svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <Path d="M7 7.5C7.27614 7.5 7.5 7.27614 7.5 7L7.5 2.5C7.5 2.22386 7.27614 2 7 2C6.72386 2 6.5 2.22386 6.5 2.5L6.5 6.5L2.5 6.5C2.22386 6.5 2 6.72386 2 7C2 7.27614 2.22386 7.5 2.5 7.5L7 7.5ZM0.646447 1.35355L6.64645 7.35355L7.35355 6.64645L1.35355 0.646447L0.646447 1.35355Z" fill="#052224" />
+                    <Path
+                      d="M7 7.5C7.27614 7.5 7.5 7.27614 7.5 7L7.5 2.5C7.5 2.22386 7.27614 2 7 2C6.72386 2 6.5 2.22386 6.5 2.5L6.5 6.5L2.5 6.5C2.22386 6.5 2 6.72386 2 7C2 7.27614 2.22386 7.5 2.5 7.5L7 7.5ZM0.646447 1.35355L6.64645 7.35355L7.35355 6.64645L1.35355 0.646447L0.646447 1.35355Z"
+                      fill="#052224"
+                    />
                   </Svg>
                 </View>
                 <Text style={styles.totalExpenseLabel}>Total Expense</Text>
@@ -101,7 +106,10 @@ export default function FinanceDashboard() {
 
           <Text style={styles.amountsalaryText}>$4.000.00</Text>
           <Text style={styles.amountfoodText}>-$100.00</Text>
+        </View>
 
+        <View style={styles.data}>
+ 
         </View>
       </View>
 
@@ -110,4 +118,3 @@ export default function FinanceDashboard() {
     </View>
   );
 }
-

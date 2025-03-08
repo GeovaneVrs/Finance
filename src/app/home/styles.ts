@@ -221,5 +221,15 @@ export const styles = StyleSheet.create({
       position: "absolute",
       right: -60, 
       top: 6, 
-    }
+    },
+    data: {
+      width: '80%',
+      position: 'absolute',
+      borderRadius: 22,
+      backgroundColor: "#dff7e2",
+      height: 60,
+      top: 200,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   });
