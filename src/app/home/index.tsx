@@ -4,6 +4,34 @@ import Svg, { Circle, Path, Rect } from "react-native-svg";
 import BottomNavbar from "@/components/bar";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
+import { TransactionList } from "@/components/history";
+
+const sampleTransactions = [
+  {
+    type: 'Salary',
+    amount: '$4.000,00',
+    category: 'Monthly',
+    date: '18:27 - April 30',
+    iconBackgroundColor: '#6DB6FE',
+    isNegative: false
+  },
+  {
+    type: 'Groceries',
+    amount: '$100,00',
+    category: 'Monthly',
+    date: '17:00 - April 24',
+    iconBackgroundColor: '#3299FF',
+    isNegative: true
+  },
+  {
+    type: 'Rent',
+    amount: '$674,40',
+    category: 'Monthly',
+    date: '8:30 - April 15',
+    iconBackgroundColor: '#0068FF',
+    isNegative: true
+  }
+];
 
 export default function FinanceDashboard() {
   const [activeButton, setActiveButton] = useState('day');
@@ -153,7 +181,14 @@ export default function FinanceDashboard() {
           </View>
         </View>
 
-              
+        <TransactionList
+          transactions={sampleTransactions}
+          containerStyle={{ marginTop: 90 }}
+          rowStyle={{ paddingHorizontal: 32 }}
+          spacing={10}
+          iconSize={48}
+          dividerHeight={25}
+        />
 
       </View>
 
