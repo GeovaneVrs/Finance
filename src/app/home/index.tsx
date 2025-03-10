@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Svg, { Circle, Path, Rect } from "react-native-svg";
 import BottomNavbar from "@/components/bar";
@@ -6,6 +6,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
 
 export default function FinanceDashboard() {
+  const [activeButton, setActiveButton] = useState('day');
+
   return (
     <View style={styles.container}>
       {/* Fundo Verde (Parte Superior) */}
@@ -109,8 +111,50 @@ export default function FinanceDashboard() {
         </View>
 
         <View style={styles.data}>
- 
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={[
+                styles.button,
+                activeButton === 'day' && styles.activeButton
+              ]}
+              onPress={() => setActiveButton('day')}
+            >
+              <Text style={[
+                styles.buttonText,
+                activeButton === 'day' && styles.activeButtonText
+              ]}>Day</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[
+                styles.button,
+                activeButton === 'week' && styles.activeButton
+              ]}
+              onPress={() => setActiveButton('week')}
+            >
+              <Text style={[
+                styles.buttonText,
+                activeButton === 'week' && styles.activeButtonText
+              ]}>Week</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[
+                styles.button,
+                activeButton === 'month' && styles.activeButton
+              ]}
+              onPress={() => setActiveButton('month')}
+            >
+              <Text style={[
+                styles.buttonText,
+                activeButton === 'month' && styles.activeButtonText
+              ]}>Month</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
+              
+
       </View>
 
       {/* Bottom Navbar fixa na parte inferior */}

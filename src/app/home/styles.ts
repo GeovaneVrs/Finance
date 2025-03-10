@@ -232,4 +232,26 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    buttonContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      width: '100%',
+      paddingHorizontal: 20,
+    },
+    button: {
+      paddingVertical: 8,
+      paddingHorizontal: 16,
+      borderRadius: 19,
+    },
+    activeButton: {
+      backgroundColor: '#00d09e',
+    },
+    buttonText: {
+      fontSize: 16,
+      color: '#666',
+      fontWeight: '500',
+    },
+    activeButtonText: {
+      color: '#fff',
+    }
   });
